@@ -36,6 +36,15 @@ podman run --rm -it -v `pwd`:/source \
      -r https://repo.sailfishos.org/obs/sailfishos:/chum:/testing/4.6.0.13_i486/
 ```
 
+If you have selinux enabled, you may have to use `:z` while mounting source
+folder:
+```
+podman run --rm -it -v `pwd`:/source:z \
+   ghcr.io/sailfishos-open/docker-sailfishos-builder-i486:4.6.0.13 \
+   buildrpm \
+     -r https://repo.sailfishos.org/obs/sailfishos:/chum:/testing/4.6.0.13_i486/
+```
+
 In this example, Podman container gets access to the sources by its
 volume mapping your current folder (`pwd`) to `/source` inside the
 container. Container executes `buildrpm` script inside it (see
